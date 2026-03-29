@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Literacy Infographic</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Clash+Display:wght@400;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --card1: #0d1f3c;
+    --card2: #0d2a1f;
+    --card3: #2a0d1f;
+    --accent1: #3af0c0;
+    --accent2: #f0c03a;
+    --accent3: #f03a6e;
+    --text: #e8f0ff;
+    --muted: #7a8aaa;
+    --grid: rgba(255,255,255,0.04);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 32px 48px;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    text-align: center;
+    margin-bottom: 44px;
+    animation: fadeDown 0.7s ease both;
+  }
+
+  .header-tag {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent1);
+    border: 1px solid var(--accent1);
+    padding: 4px 14px;
+    border-radius: 2px;
+    margin-bottom: 16px;
+    opacity: 0.85;
+  }
+
+  .header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(34px, 6vw, 58px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #ffffff 20%, var(--accent1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+
+  .header p {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+
+  /* ── SECTION CARDS ── */
+  .sections {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .card {
+    border-radius: 14px;
+    padding: 28px 28px 24px;
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0.18;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+
+  .card:hover::before { opacity: 0.28; }
+
+  .card-1 {
+    background: var(--card1);
+    border-color: rgba(58,240,192,0.2);
+    animation-delay: 0.1s;
+  }
+  .card-1::before {
+    background: radial-gradient(ellipse at top left, var(--accent1), transparent 70%);
+  }
+
+  .card-2 {
+    background: var(--card2);
+    border-color: rgba(240,192,58,0.2);
+    animation-delay: 0.25s;
+  }
+  .card-2::before {
+    background: radial-gradient(ellipse at top left, var(--accent2), transparent 70%);
+  }
+
+  .card-3 {
+    background: var(--card3);
+    border-color: rgba(240,58,110,0.2);
+    animation-delay: 0.4s;
+  }
+  .card-3::before {
+    background: radial-gradient(ellipse at top left, var(--accent3), transparent 70%);
+  }
+
+  /* Card header */
+  .card-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .card-1 .card-icon { background: rgba(58,240,192,0.12); }
+  .card-2 .card-icon { background: rgba(240,192,58,0.12); }
+  .card-3 .card-icon { background: rgba(240,58,110,0.12); }
+
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+  .card-1 .card-title { color: var(--accent1); }
+  .card-2 .card-title { color: var(--accent2); }
+  .card-3 .card-title { color: var(--accent3); }
+
+  .card-subtitle {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'Space Mono', monospace;
+    margin-top: 2px;
+  }
+
+  /* Grid of tips */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+  }
+
+  .tip {
+    background: rgba(255,255,255,0.04);
+    border-radius: 10px;
+    padding: 14px 16px;
+    border-left: 3px solid;
+    transition: background 0.2s, transform 0.2s;
+    cursor: default;
+  }
+  .tip:hover {
+    background: rgba(255,255,255,0.07);
+    transform: translateY(-2px);
+  }
+
+  .card-1 .tip { border-color: var(--accent1); }
+  .card-2 .tip { border-color: var(--accent2); }
+  .card-3 .tip { border-color: var(--accent3); }
+
+  .tip-label {
+    font-size: 11px;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .card-1 .tip-label { color: var(--accent1); }
+  .card-2 .tip-label { color: var(--accent2); }
+  .card-3 .tip-label { color: var(--accent3); }
+
+  .tip p {
+    font-size: 13px;
+    color: #b8c8e8;
+    line-height: 1.6;
+  }
+
+  /* Stat pills */
+  .stat-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .stat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .stat-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .card-1 .stat-num { color: var(--accent1); }
+  .card-2 .stat-num { color: var(--accent2); }
+  .card-3 .stat-num { color: var(--accent3); }
+
+  .stat-desc {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.4;
+    max-width: 110px;
+  }
+
+  /* ── QUICK CHECKLIST ── */
+  .checklist-section {
+    margin-top: 28px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 24px 28px;
+    animation: fadeUp 0.7s 0.55s ease both;
+  }
+
+  .checklist-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 18px;
+  }
+
+  .checklist {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 10px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: #c0d0ee;
+    line-height: 1.5;
+  }
+
+  .check-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 10px;
+  }
+
+  .dot-green { border-color: var(--accent1); color: var(--accent1); }
+  .dot-yellow { border-color: var(--accent2); color: var(--accent2); }
+  .dot-red { border-color: var(--accent3); color: var(--accent3); }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: 28px;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    opacity: 0.6;
+    animation: fadeUp 0.7s 0.65s ease both;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Print / A4 */
+  @media print {
+    body { background: white; color: #111; }
+    body::before { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-tag">Essential Skills for the Digital Age</div>
+    <h1>Digital Citizenship<br>Starter Guide</h1>
+    <p>Master the three pillars of responsible internet use — literacy, safety, and communication.</p>
+  </header>
+
+  <!-- SECTIONS -->
+  <div class="sections">
+
+    <!-- CARD 1 — DIGITAL LITERACY -->
+    <div class="card card-1">
+      <div class="card-head">
+        <div class="card-icon">📚</div>
+        <div>
+          <div class="card-title">Digital Literacy</div>
+          <div class="card-subtitle">Find · Evaluate · Create</div>
+        </div>
+      </div>
+      <div class="tips-grid">
+        <div class="tip">
+          <div class="tip-label">Verify Sources</div>
+          <p>Cross-check information across at least 3 reputable sources before sharing. Look for .gov, .edu, or established news outlets.</p>
+        </div>
+        <div class="tip">
+          <div class="tip-label">Spot Fake News</div>
+          <p>Check the URL carefully, look for unusual formatting, overly emotional headlines, or missing author credentials.</p>
+        </div>
+        <div class="tip">
+          <div class="tip-label">Search Smartly</div>
+          <p>Use quotation marks for exact phrases. Add "site:" to restrict searches. Use advanced filters to narrow by date.</p>
+        </div>
+        <div class="tip">
+          <div class="tip-label">Digital Footprint</div>
+          <p>Everything you post online can persist indefinitely. Think before you share — your digital reputation matters.</p>
+        </div>
+        <div class="tip">
+          <div class="tip-label">Copyright & IP</div>
+          <p>Respect intellectual property. Use Creative Commons licensed content and always attribute original creators.</p>
+        </div>
+        <div class="tip">
+          <div class="tip-label">AI Awareness</div>
+          <p>Understand that AI-generated content can contain errors. Always verify AI outputs with authoritative sources.</p>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat">
+          <div>
+            <div class="stat-num">3.6B</div>
+            <div class="stat-desc">fake news shares daily on social media</div>
+          </div>
+        </div>
+        <div class="stat">
+          <div>
+            <div class="stat-num">63%</div>
+            <div class="stat-desc">of people can't tell fake news from real</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2 — ONLINE SAFETY -->
+    <div class="card card-2">
+      <div class="card-head">
+        <div class="card-icon">🛡️</div>
+        <div>
+          <div class="card-title">Online Safety</div>
+          <div class="card-subtitle">Protect · Detect · Respond</div>
+        </div>
+      </div>
+      <div class="tips-grid">
+        <div class="tip">
+          <div class="tip-label">Strong Passwords</div>
+          <p>Use 12+ character passwords mixing letters, numbers & symbols. Never reuse passwords across sites. Use a password manager.</p>
+        </div>
+        <div class="tip">
+          <div class="tip-label">Enable 2FA / MFA</div>
+          <p>Two-factor authentication adds a vital second layer. Use an authenticator app — it's more secure than SMS codes.</p>
+        </div>
+        <div class="tip">
+          <div class="tip-label">Phishing Alerts</div>
+          <p>Never click suspicious links in emails or texts. Check sender addresses carefully. When in doubt, go directly to the website.</p>
+        </div>
+        <div class="tip">
+          <div class="tip-label">Public Wi-Fi</div>
+          <p>Avoid banking or shopping on public Wi-Fi. Use a VPN to encrypt your connection on untrusted networks.</p>
+        </div>
+        <div class="tip">
+          <div class="tip-label">Software Updates</div>
+          <p>Keep OS, apps and antivirus software updated. Most cyberattacks exploit known vulnerabilities in outdated software.</p>
+        </div>
+        <div class="tip">
+          <div class="tip-label">Privacy Settings</div>
+          <p>Audit social media privacy settings regularly. Limit what personal data apps can access on your device.</p>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat">
+          <div>
+            <div class="stat-num">90%</div>
+            <div class="stat-desc">of data breaches involve human error</div>
+          </div>
+        </div>
+        <div class="stat">
+          <div>
+            <div class="stat-num">1 in 3</div>
+            <div class="stat-desc">people experience cybercrime each year</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 3 — EMAIL ETIQUETTE -->
+    <div class="card card-3">
+      <div class="card-head">
+        <div class="card-icon">✉️</div>
+        <div>
+          <div class="card-title">Email Etiquette</div>
+          <div class="card-subtitle">Write · Respond · Respect</div>
+        </div>
+      </div>
+      <div class="tips-grid">
+        <div class="tip">
+          <div class="tip-label">Subject Lines</div>
+          <p>Write clear, specific subject lines. e.g., "Meeting Rescheduled — Mon 10 AM" not just "Meeting". This aids filtering and urgency.</p>
+        </div>
+        <div class="tip">
+          <div class="tip-label">Reply Time</div>
+          <p>Respond to professional emails within 24 hours. If you need more time, send a brief acknowledgement to set expectations.</p>
+        </div>
+        <div class="tip">
+          <div class="tip-label">CC vs BCC</div>
+          <p>CC recipients can see each other. Use BCC for mass emails or to protect recipient privacy. Avoid unnecessary CC'ing.</p>
+        </div>
+        <div class="tip">
+          <div class="tip-label">Tone & Language</div>
+          <p>Stay professional. Avoid slang, ALL CAPS (implies shouting), and excessive exclamation marks. Re-read before sending.</p>
+        </div>
+        <div class="tip">
+          <div class="tip-label">Attachments</div>
+          <p>Mention attachments in the email body. Compress large files. Prefer cloud links (Drive/OneDrive) for files over 10 MB.</p>
+        </div>
+        <div class="tip">
+          <div class="tip-label">Reply All</div>
+          <p>Think before using "Reply All." Ask: does everyone really need this? Unnecessary replies flood inboxes and reduce productivity.</p>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat">
+          <div>
+            <div class="stat-num">347B</div>
+            <div class="stat-desc">emails sent & received per day worldwide</div>
+          </div>
+        </div>
+        <div class="stat">
+          <div>
+            <div class="stat-num">28%</div>
+            <div class="stat-desc">of work time spent managing email</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /sections -->
+
+  <!-- QUICK CHECKLIST -->
+  <div class="checklist-section">
+    <div class="checklist-title">✦ Daily Digital Checklist</div>
+    <div class="checklist">
+      <div class="check-item">
+        <div class="check-dot dot-green">✓</div>
+        <span>Verify before sharing — check your source</span>
+      </div>
+      <div class="check-item">
+        <div class="check-dot dot-green">✓</div>
+        <span>Lock your devices with a PIN or biometric</span>
+      </div>
+      <div class="check-item">
+        <div class="check-dot dot-yellow">✓</div>
+        <span>Log out of accounts on shared devices</span>
+      </div>
+      <div class="check-item">
+        <div class="check-dot dot-yellow">✓</div>
+        <span>Proofread emails before hitting Send</span>
+      </div>
+      <div class="check-item">
+        <div class="check-dot dot-red">✓</div>
+        <span>Never share passwords or OTPs with anyone</span>
+      </div>
+      <div class="check-item">
+        <div class="check-dot dot-red">✓</div>
+        <span>Report phishing emails — don't just delete</span>
+      </div>
+      <div class="check-item">
+        <div class="check-dot dot-green">✓</div>
+        <span>Back up important files to cloud or external drive</span>
+      </div>
+      <div class="check-item">
+        <div class="check-dot dot-yellow">✓</div>
+        <span>Keep subject lines clear and professional</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">DIGITAL CITIZENSHIP GUIDE &nbsp;·&nbsp; STAY SAFE · STAY INFORMED · STAY RESPECTFUL</div>
+
+</div>
+</body>
+</html>
